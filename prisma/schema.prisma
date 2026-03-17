@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  firstName    String
+  lastName     String
+  nationalId   String        @unique
+  phoneNumber  String        @unique
+  transactions Transaction[]
+  loans        Loan[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([nationalId], name: "user_national_id_idx")
+  @@index([phoneNumber], name: "user_phone_number_idx")
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  amount      Float
+  type        String   // 'credit' or 'debit'
+  date        DateTime
+  description String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId], name: "transaction_user_id_idx")
+}
+
+model Loan {
+  id            String   @id @default(uuid())
+  amount        Float
+  loanType      String   // 'personal' or 'business'
+  status        String   // 'pending', 'approved', 'rejected'
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  screenshotUrl String
+  netCashFlow   Float    // (total credits - total debits)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([userId], name: "loan_user_id_idx")
+}

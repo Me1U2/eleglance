@@ -46,17 +46,34 @@ export default function Layout() {
               headerShown: false 
             }} 
           />
-          <Stack.Screen 
-            name="transaction" 
-            options={{ 
-              title: 'Transactions',
-              headerStyle: {
-                backgroundColor: '#fff',
-              },
-              headerTintColor: '#000',
+          <Stack.Screen
+            name="register"
+            options={{
+              title: 'Create Account',
+              headerBackTitle: 'Back',
               headerTitleStyle: styles.headerTitle,
-              headerBackTitleStyle: styles.headerBackTitle
-            }} 
+              headerBackTitleStyle: styles.headerBackTitle,
+              headerTintColor: '#000',
+              headerStyle: { backgroundColor: '#fff' },
+            }}
+          />
+          <Stack.Screen
+            name="loan-application"
+            options={{
+              title: 'Loan Application',
+              headerBackTitle: 'Back',
+              headerTitleStyle: styles.headerTitle,
+              headerBackTitleStyle: styles.headerBackTitle,
+              headerTintColor: '#000',
+              headerStyle: { backgroundColor: '#fff' },
+            }}
+          />
+          <Stack.Screen
+            name="dashboard"
+            options={{
+              title: 'Dashboard',
+              headerShown: false,
+            }}
           />
         </Stack>
       </ThemeProvider>

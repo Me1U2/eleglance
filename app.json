@@ -18,10 +18,20 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.eleglance.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "INTERNET",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -29,6 +39,16 @@
     "plugins": [
       "expo-router"
     ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "bfbb7819-bd6c-4662-b002-d94502dd92d1"
+      }
+    },
+    "owner": "me1u2",
     "scheme": "eleglance"
   }
 }
